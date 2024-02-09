@@ -1,0 +1,52 @@
+---
+title: "Relatório de Câmbio (BRL/USD)"
+author: "Fernando da Silva"
+format: html
+editor: visual
+---
+
+Neste relatório mostro como utilizar o R para obter dados públicos da taxa de câmbio (BRL/USD, livre, média mensal de venda) através da API do Banco Central do Brasil e produzir um gráfico com sua evolução recente.
+
+## Pacotes
+
+Primeiro é necessário carregar os pacotes de R (e instalar caso não estejam instalados ainda) para usar as funções úteis de coleta, tratamento e visualização de dados:
+
+```{r}
+# Carregar pacotes
+library(rbcb)
+library(ggplot2)
+```
+
+## Dados
+
+Em seguida é necessário identificar o código da série temporal desejada no sistema SGS/BCB e utilizar este código para obter os dados com o pacote `{rbcb}` :
+
+```{r}
+# Coleta de dados
+dados <- get_series(code = c("cambio" = 3698), start_date = Sys.Date() - 365*4)
+```
+
+Os dados brutos obtidos no SGS/BCB são exibidos abaixo:
+
+```{r}
+dados
+```
+
+## Visualização de Dados
+
+Por fim, pode ser utilizado um pacote de visualização de dados como o `{ggplot2}` para gerar um gráfico de linha com a série da taxa de câmbio:
+
+```{r}
+# Gráfico de linha
+ggplot(data = dados) +
+  aes(x = date, y = cambio) +
+  geom_line(color = "darkblue", linewidth = 1) +
+  labs(
+    title = "Taxa de câmbio livre",
+    subtitle = "Média mensal de venda",
+    y = "BRL/USD",
+    x = NULL,
+    caption = "Dados: BCB | Elaboração: Fernando da Silva"
+    ) +
+  theme_light()
+```
