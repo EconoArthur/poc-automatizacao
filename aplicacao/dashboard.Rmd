@@ -15,7 +15,7 @@ library(highcharter)
 library(shinyWidgets)
 
 # Carregar dados
-dados <- readr::read_csv(file = "../dados/dados.csv")
+dados <- readr::read_csv(file = "../aplicacao/dados_disponibilizados.csv")
 ```
 
 
