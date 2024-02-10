@@ -1,0 +1,114 @@
+---
+title: "Macro Copa"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+# Carregar pacotes
+library(flexdashboard)
+library(readr)
+library(highcharter)
+library(shinyWidgets)
+
+# Carregar dados
+dados <- readr::read_csv(file = "../dados/dados.csv")
+```
+
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+Entra em campo a seleção de dados macroeconômicos! ⚽
+
+Defina os times de países e indicadores, explore o jogo de visualizações e marque gol na análise de dados!
+
+```{r}
+# Botão de selecionar países
+shinyWidgets::pickerInput(
+  inputId = "pais",
+  label = "Selecione os países:",
+  choices = sort(unique(dados$pais)),
+  selected = c("Brazil", "Argentina", "United States"), 
+  multiple = TRUE, 
+  options = list("max-options" = 3)
+  )
+
+
+# Botão de selecionar variável
+shinyWidgets::pickerInput(
+  inputId = "variavel",
+  label = "Selecione a variável:",
+  choices = sort(unique(dados$variavel)),
+  selected = "PIB (cresc. anual, %)", 
+  multiple = FALSE
+  )
+
+# Botão de seleciona tipo de gráfico
+shinyWidgets::radioGroupButtons(
+  inputId = "grafico",
+  label = "Selecione o tipo de gráfico:", 
+  choices = c("Linha" = "line", "Coluna" = "column", "Área" = "area"), 
+  selected = "line"
+  )
+```
+
+Última atualização: `r format(max(dados$atualizacao), format = "%d/%m/%Y")`.
+Elaboração: [Análise Macro](https://analisemacro.com.br/)
+
+
+Column
+-----------------------------------------------------------------------
+
+### Primeiro país {.no-title}
+
+```{r}
+highcharter::renderHighchart({
+  
+  shiny::req(input$pais[1], input$variavel, input$grafico)
+  
+  dados %>% 
+    dplyr::filter(pais == input$pais[1], variavel == input$variavel) %>% 
+    highcharter::hchart(type = input$grafico, highcharter::hcaes(x = data, y = valor)) %>% 
+    highcharter::hc_navigator(enabled = TRUE) %>% 
+    highcharter::hc_title(text = paste0(input$pais[1], " - ", input$variavel))
+})
+```
+
+Column
+
+
+### Segundo país {.no-title}
+
+```{r}
+highcharter::renderHighchart({
+  
+  shiny::req(input$pais[2], input$variavel, input$grafico)
+  
+  dados %>% 
+    dplyr::filter(pais == input$pais[2], variavel == input$variavel) %>% 
+    highcharter::hchart(type = input$grafico, highcharter::hcaes(x = data, y = valor)) %>% 
+    highcharter::hc_navigator(enabled = TRUE) %>% 
+    highcharter::hc_title(text = paste0(input$pais[2], " - ", input$variavel))
+  })
+```
+
+Column
+
+### Terceiro país {.no-title}
+
+```{r}
+highcharter::renderHighchart({
+  
+  shiny::req(input$pais[3], input$variavel, input$grafico)
+  
+  dados %>% 
+    dplyr::filter(pais == input$pais[3], variavel == input$variavel) %>% 
+    highcharter::hchart(type = input$grafico, highcharter::hcaes(x = data, y = valor)) %>% 
+    highcharter::hc_navigator(enabled = TRUE) %>% 
+    highcharter::hc_title(text = paste0(input$pais[3], " - ", input$variavel))
+})
+```
