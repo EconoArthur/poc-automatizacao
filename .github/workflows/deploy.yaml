@@ -1,0 +1,45 @@
+on:
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 15 * * 1'
+
+name: Publicação de Aplicações
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Clona esse repositório
+        uses: actions/checkout@v3
+
+      - name: Instala o R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.2'
+          use-public-rspm: true
+
+      - name: Instala pacotes de R
+        uses: r-lib/actions/setup-renv@v2
+
+      - name: Extração, Transformação, Disponibilização
+        run: |
+          source("./R/00_pacotes.R")
+          source("./R/01_funcoes_uteis.R")
+          source("./R/02_extracao.R")
+          source("./R/03_transformacao.R")
+          source("./R/04_disponibilizacao.R")
+        shell: Rscript {0}
+
+      - name: Instala o Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Renderiza o Relatório
+        run: |
+          quarto render aplicacao/relatorio.qmd
+      
+      - name: Commit & Push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Atualização de Aplicações
