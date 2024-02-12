@@ -1,0 +1,10 @@
+name: dashboard
+title:
+username: allanarthur
+account: allanarthur
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11206907
+bundleId: 8248055
+url: https://allanarthur.shinyapps.io/dashboard/
+version: 1
