@@ -14,7 +14,6 @@ jobs:
       RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
       RSCONNECT_SECRET: ${{ secrets.RSCONNECT_SECRET }}
       
-
     steps:
       - name: Clona esse repositório
         uses: actions/checkout@v3
