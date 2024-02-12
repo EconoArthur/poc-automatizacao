@@ -8,7 +8,7 @@ name: Publicação de Aplicações
 
 jobs:
   Deploy:
-    runs-on: ubuntu-last
+    runs-on: ubuntu-22.04
     env: 
       RSCONNECT_USER: ${{ secrets.RSCONNECT_USER }}
       RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
