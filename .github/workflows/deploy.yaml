@@ -8,7 +8,7 @@ name: Publicação de Aplicações
 
 jobs:
   Deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-last
     env: 
       RSCONNECT_USER: ${{ secrets.RSCONNECT_USER }}
       RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
@@ -54,6 +54,7 @@ jobs:
           rsconnect::deployDoc(doc = "aplicacao/dashboard.Rmd", 
           forceUpdate = TRUE
           )
+      shell: Rscript {0}
 
 
       - name: Commit & Push
