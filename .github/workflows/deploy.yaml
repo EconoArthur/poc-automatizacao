@@ -9,6 +9,11 @@ name: Publicação de Aplicações
 jobs:
   Deploy:
     runs-on: ubuntu-22.04
+    env: 
+      RSCONNECT_USER: ${{ secrets.RSCONNECT_USER }}
+      RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
+      RSCONNECT_SECRET: ${{ secrets.RSCONNECT_SECRET }}
+      
 
     steps:
       - name: Clona esse repositório
@@ -39,6 +44,18 @@ jobs:
         run: |
           quarto render aplicacao/relatorio.qmd
       
+      - name: Publica a Dashboard
+        run: |
+          rsconnect::setAccountInfo(
+            name='${{ secrets.RSCONNECT_USER }}',
+            token='${{ secrets.RSCONNECT_TOKEN }}',
+            secret='${{ secrets.RSCONNECT_SECRET }}'
+            )
+          rsconnect::deployDoc(doc = "aplicacao/dashboard.Rmd", 
+          forceUpdate = TRUE
+          )
+
+
       - name: Commit & Push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
