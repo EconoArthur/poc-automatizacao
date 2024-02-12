@@ -1,5 +1,5 @@
 ---
-title: "Macro Copa"
+title: "Indices Macro"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -22,9 +22,9 @@ dados <- readr::read_csv(file = "../aplicacao/dados_disponibilizados.csv")
 Column {.sidebar}
 -----------------------------------------------------------------------
 
-Entra em campo a seleção de dados macroeconômicos! ⚽
+Seleção de dados macroeconômicos! 
 
-Defina os times de países e indicadores, explore o jogo de visualizações e marque gol na análise de dados!
+Defina os países e indicadores nos botões abaixo:
 
 ```{r}
 # Botão de selecionar países
@@ -57,7 +57,7 @@ shinyWidgets::radioGroupButtons(
 ```
 
 Última atualização: `r format(max(dados$atualizacao), format = "%d/%m/%Y")`.
-Elaboração: [Análise Macro](https://analisemacro.com.br/)
+Elaboração: [Econo.Arthur](https://www.linkedin.com/in/allan-arthur-de-a-oliveira-54a923bb/)
 
 
 Column
