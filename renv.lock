@@ -20,6 +20,28 @@
       ],
       "Hash": "9b4993e98e0e19da84c168460c032fef"
     },
+  "flexdashboard": {
+      "Package": "flexdashboard",
+      "Version": "0.6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "bslib",
+        "grDevices",
+        "htmltools",
+        "htmlwidgets",
+        "jsonlite",
+        "knitr",
+        "rmarkdown",
+        "sass",
+        "scales",
+        "shiny",
+        "tools",
+        "utils"
+      ],
+      "Hash": "66aa31fb4b18c053cd20753523073742"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-60",
