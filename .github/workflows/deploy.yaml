@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 15 * * 1'
 
-name: Publicação de Aplicações
+name: Publicação de Dashboard - Indicadores macro de países.
 
 jobs:
   Deploy:
