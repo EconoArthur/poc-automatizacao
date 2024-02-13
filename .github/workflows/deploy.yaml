@@ -8,7 +8,7 @@ name: Publicação de Dashboard - Indicadores macro de países.
 
 jobs:
   Deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     env: 
       RSCONNECT_USER: ${{ secrets.RSCONNECT_USER }}
       RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
