@@ -54,7 +54,6 @@ jobs:
             doc = "aplicacao/dashboard.Rmd", 
             forceUpdate = TRUE
           )
-          rsconnect::forgetDeployment()
         shell: Rscript {0}
 
 
