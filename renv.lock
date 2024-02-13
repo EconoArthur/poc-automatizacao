@@ -20,7 +20,36 @@
       ],
       "Hash": "9b4993e98e0e19da84c168460c032fef"
     },
-  "flexdashboard": {
+    "highcharter": {
+      "Package": "highcharter",
+      "Version": "0.9.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e9851999ff5a7d33d6b17a68b2cb7f59",
+      "Requirements": [
+        "assertthat",
+        "broom",
+        "dplyr",
+        "htmltools",
+        "htmlwidgets",
+        "igraph",
+        "jsonlite",
+        "lubridate",
+        "magrittr",
+        "purrr",
+        "quantmod",
+        "rjson",
+        "rlang",
+        "rlist",
+        "stringr",
+        "tibble",
+        "tidyr",
+        "xts",
+        "yaml",
+        "zoo"
+      ]
+    },
+    "flexdashboard": {
       "Package": "flexdashboard",
       "Version": "0.6.1",
       "Source": "Repository",
