@@ -2,7 +2,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '0 15 * * 1'
+    - cron: 
 
 name: Publicação de Dashboard - Indicadores macro de países.
 
